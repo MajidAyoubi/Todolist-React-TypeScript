@@ -8,12 +8,14 @@ interface TodoListProps {
   }[];
   toggleTodo: (id: string, completed: boolean) => void;
   deleteTodo: (id: string) => void;
+  onEdit: (id: string) => void;
 }
 
 export function TodoList({
   todos,
   toggleTodo,
   deleteTodo,
+  onEdit,
 }: TodoListProps): JSX.Element {
   return (
     <ul className="list">
@@ -24,6 +26,7 @@ export function TodoList({
           {...todo}
           toggleTodo={toggleTodo}
           deleteTodo={deleteTodo}
+          onEdit={() => onEdit(todo.id)}
         />
       ))}
     </ul>
