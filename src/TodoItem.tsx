@@ -6,6 +6,7 @@ interface TodoItemProps {
   title: string;
   toggleTodo: (id: string, completed: boolean) => void;
   deleteTodo: (id: string) => void;
+  onEdit: () => void;
 }
 
 export function TodoItem({
@@ -14,6 +15,7 @@ export function TodoItem({
   title,
   toggleTodo,
   deleteTodo,
+  onEdit,
 }: TodoItemProps): JSX.Element {
   function handleToggleTodo(e: ChangeEvent<HTMLInputElement>): void {
     toggleTodo(id, e.target.checked);
@@ -33,9 +35,14 @@ export function TodoItem({
         />
         <span className="text">{title}</span>
       </label>
-      <button onClick={handleDeleteTodo} className="btn btn-danger">
-        <span className="fas fa-trash"></span>
-      </button>
+      <div className="Buttons">
+        <button onClick={handleDeleteTodo} className="btn btn-danger">
+          <span className="fas fa-trash"></span>
+        </button>
+        <button onClick={onEdit} className="btn btn-edit">
+          <span className="fas fa-edit"></span>
+        </button>
+      </div>
     </li>
   );
 }
